@@ -32,7 +32,7 @@ int main(int argc, char **rgv){
   int n;
   for(n=0;n<Np;n++){
     pos1[n]=xn0(n);
-    printf("%d,%f",n,pos1[n]);
+    printf("%d,%f \n",n,pos1[n]);
   }
 
   return 0;
