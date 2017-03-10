@@ -33,7 +33,7 @@ int main(int argc, char **argv){
   vel2=malloc(Np*sizeof(double));
 
   int i,n;
-  #pragma omp parallel for
+#pragma omp parallel for shared(pos1,vel1)
   for(n=0;n<Np;n++){
     pos1[n]=xn0(n);
     vel1[n]=0;
@@ -55,13 +55,13 @@ int main(int argc, char **argv){
 
   double v12;
   for(i=0;i<Nt;i++){
-    #pragma omp parallel for
+#pragma omp parallel for shared(pos1,pos2,vel1) private(v12)
     for(n=1;n<Np-1;n++){
       v12=vel1[n]+0.5*dt*F(pos1,n);
       pos2[n]=pos1[n]+dt*v12;
     }
 
-    #pragma omp parallel for
+#pragma omp parallel for shared(pos1,pos2,vel1,vel2) private(v12)
     for(n=1;n<Np-1;n++){
       v12=vel1[n]+0.5*dt*F(pos1,n);
       vel2[n]=v12+0.5*dt*F(pos2,n);
@@ -75,7 +75,7 @@ int main(int argc, char **argv){
       fprintf(file1,"%f %f %f \n",E1,E2,E3);
     }
 
-    #pragma omp parallel for
+#pragma omp parallel for shared(pos1,pos2,vel1,vel2)
     for(n=1;n<Np-1;n++){
       pos1[n]=pos2[n];
       vel1[n]=vel2[n];
