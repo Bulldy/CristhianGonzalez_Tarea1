@@ -10,5 +10,8 @@ t=np.array([t1,t2,t4])
 
 fig1=plt.figure()
 plt.plot(p,t,marker='o')
+plt.xlim(0,5)
+plt.ylabel('Tiempo (s)')
+plt.xlabel('Numero de procesadores')
 plt.savefig('t_proc.pdf')
 plt.close()
