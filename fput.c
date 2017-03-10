@@ -117,7 +117,7 @@ double Ek(double *xnt, double *vnt, int k, int Nobs){
   Ak=0;
   Akp=0;
   wk2=4*sin(k*PI/(2*Nobs+2))*sin(k*PI/(2*Nobs+2));
-  #pragma omp parallel for
+#pragma omp parallel for shared(Ak,Akp,Nobs)
   for(j=0;j<Nobs;j++){
     Ak+=sqrt((2.0/(Nobs+1)))*xnt[j]*sin(j*k*PI/(Nobs+1));
     Akp+=sqrt((2.0/(Nobs+1)))*vnt[j]*sin(j*k*PI/(Nobs+1));
