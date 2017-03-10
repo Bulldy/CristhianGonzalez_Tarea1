@@ -1,0 +1,10 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+E1=np.genfromtxt("proc1.txt")
+E2=np.genfromtxt("proc2.txt")
+E4=np.genfromtxt("proc4.txt")
+
+print(E1.shape)
+print(E2.shape)
+print(E4.shape)
